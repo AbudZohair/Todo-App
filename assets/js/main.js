@@ -29,10 +29,11 @@ list.addEventListener('click', e =>{
 
         if(confirm("did you finished this task?!")){
             e.target.parentElement.remove();
+                // Remove todo From Local Storage 
+    removeTodoFromLocalStorage(e.target.parentElement);
         }
 
-        // Remove todo From Local Storage 
-    removeTodoFromLocalStorage(e.target.parentElement);
+    
     }
 
 });
@@ -102,13 +103,12 @@ function removeTodoFromLocalStorage (todo){
     }else{
         todos = JSON.parse(localStorage.getItem('todos'));
     }
-    todos.forEach((todoItem, index) =>{
-        if(todo.textContent.trim() === todoItem){
-            todos.splice(index, 1);
-        }
+    
+   let filtered = todos.filter((todoItem)=>{
+        return todoItem !== todo.textContent.trim(); 
     });
-    localStorage.setItem('todos', JSON.stringify(todos));
 
+    localStorage.setItem('todos', JSON.stringify(filtered));
 }
 
 
