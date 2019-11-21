@@ -29,11 +29,11 @@ list.addEventListener('click', e =>{
 
         if(confirm("did you finished this task?!")){
             e.target.parentElement.remove();
-                // Remove todo From Local Storage 
+                  // Remove todo From Local Storage 
     removeTodoFromLocalStorage(e.target.parentElement);
         }
 
-    
+  
     }
 
 });
@@ -72,12 +72,21 @@ list.innerHTML += html;
 
 // Fitering To do Search
 function filterTodos (term) {
+
+
+    // Make an Array of tasks
+
     Array.from(list.children)
+        // filter tasks list  to hide the list item that doesn't include the (Searched Term)
         .filter( item=>   !item.textContent.toLowerCase().includes(term))
+        // add the filter class that hide this item 
         .forEach(item => item.classList.add('filter'));
         
         Array.from(list.children)
+        // filter tasks list  to hide the list item that doesn't include the (Searched Term)
         .filter( item=>   item.textContent.toLowerCase().includes(term))
+
+        // remove the filter class that hide this item
         .forEach(item =>  item.classList.remove('filter'));
 };
 
@@ -103,12 +112,13 @@ function removeTodoFromLocalStorage (todo){
     }else{
         todos = JSON.parse(localStorage.getItem('todos'));
     }
-    
-   let filtered = todos.filter((todoItem)=>{
+
+    let filtered = todos.filter((todoItem)=>{
         return todoItem !== todo.textContent.trim(); 
     });
 
     localStorage.setItem('todos', JSON.stringify(filtered));
+
 }
 
 
