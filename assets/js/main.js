@@ -83,10 +83,10 @@ function filterTodos (term) {
         .forEach(item => item.classList.add('filter'));
         
         Array.from(list.children)
-        // filter tasks list  to hide the list item that doesn't include the (Searched Term)
+        // filter tasks list  to show the list item that includes the (Searched Term)
         .filter( item=>   item.textContent.toLowerCase().includes(term))
 
-        // remove the filter class that hide this item
+        // remove the filter class that hide this item 
         .forEach(item =>  item.classList.remove('filter'));
 };
 
